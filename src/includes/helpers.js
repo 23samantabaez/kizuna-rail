@@ -21,9 +21,40 @@ const kmToMiles = (km) => {
  * @param {number} yen - The amount in Japanese Yen.
  * @returns {number} The equivalent amount in US Dollars.
  */
+
 const yenToUsd = (yen) => {
     const exchangeRate = 0.0066; // Example rate: 1 Yen = 0.0066 USD
     return yen * exchangeRate;
+};
+
+const MONTH_NAMES = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
+];
+
+export const formatOperatingMonths = (months) => {
+  if (!months) return '';
+
+  const monthNumbers = Array.isArray(months)
+    ? months
+    : String(months)
+        .replace(/[{}]/g, '')
+        .split(',')
+        .map((month) => month.trim());
+
+  return monthNumbers
+    .map((month) => MONTH_NAMES[Number(month) - 1])
+    .filter(Boolean);
 };
 
 export { generateConfirmationCode, kmToMiles, yenToUsd };

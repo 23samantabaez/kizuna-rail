@@ -3,8 +3,18 @@ import { getDb as db } from './db-in-file.js';
 
 // ROUTE MODEL FUNCTIONS
 
-export const getAllRoutes = async () => {
-    return db().routes;
+export const getAllRoutes = async (filters = {}) => {
+    let routes = db().routes;
+
+    if (filters.region) {
+        routes = routes.filter(route => route.region.toLowerCase() === filters.region.toLowerCase());
+    }
+
+    if (filters.season) {
+        routes = routes.filter(route => route.bestSeason.toLowerCase() === filters.season.toLowerCase());
+    }
+
+    return routes;
 };
 
 export const getListOfRegions = async () => {
