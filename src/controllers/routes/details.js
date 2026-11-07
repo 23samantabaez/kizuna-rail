@@ -7,8 +7,6 @@ export default async (req, res) => {
     details.schedules = await getSchedulesByRoute(routeId);
     details.operatingMonths = formatOperatingMonths(details.operatingMonths);
 
-    // TODO: getCompleteRouteDetails instead
-
     res.render('routes/details', { 
         title: 'Route Details',
         details
